@@ -29,43 +29,31 @@ const gamesContainer = document.getElementById("games-container");
 
 // create a function that adds all data from the games array to the page
 function addGamesToPage(games) {
+    // Clear the container first (optional, in case you call this function multiple times)
+    gamesContainer.innerHTML = "";
 
+    // Loop over each game in the games array
     for (var i = 0; i < games.length; i++) {
+        // Create a new div element for the game card
+        const gameCard = document.createElement("div");
+        gameCard.classList.add("game-card");
 
-        console.log(games[i]);
-        //console.log("adding object", obj)
-        var obj = `<div class='game-card'> \
-               <p>${games[i].name}</p> \
-               <img class='game-img' src=${games[i].img}> \
-               </div>`
-        var el=document.createElement("div")
-        el.innerHTML=obj
-        gamesContainer.appendChild(el)
+        // Set the inner HTML of the game card with details and a template literal
+        gameCard.innerHTML = `
+            <img class="game-img" src="${games[i].img}" alt="${games[i].name}">
+            <h3>Name: ${games[i].name}</h3>
+            <p>Description: ${games[i].description}</p>
+            <p><strong>Pledged:</strong> ${games[i].pledged}</p>
+            <p><strong>Goal:</strong> ${games[i].goal}</p>
+            <p><strong>Backers:</strong> ${games[i].backers}</p>
+        `;
 
+        // Append the game card to the games-container
+        gamesContainer.appendChild(gameCard);
     }
-    
-    
-
-    // loop over each item in the data
-
-
-        // create a new div element, which will become the game card
-
-
-        // add the class game-card to the list
-
-
-        // set the inner HTML using a template literal to display some info 
-        // about each game
-        // TIP: if your images are not displaying, make sure there is space
-        // between the end of the src attribute and the end of the tag ("/>")
-
-
-        // append the game to the games-container
-
 }
 
-// call the function we just defined using the correct variable
+// Call the function with the GAMES_JSON array
 addGamesToPage(GAMES_JSON);
 // later, we'll call this function using a different list of games
 
