@@ -170,40 +170,25 @@ allBtn.addEventListener("click", function() {
 // grab the description container
 const descriptionContainer = document.getElementById("description-container");
 
-// use filter or reduce to count the number of unfunded games
-//unfundedGames = GAMES_JSON.filter(game => !game.funded);
+// use reduce to calculate the total money raised
+const totalMoneyRaised = GAMES_JSON.reduce((total, game) => total + game.pledged, 0);
 
+// use filter to count the number of unfunded games
+const unfundedGames = GAMES_JSON.filter(game => game.pledged < game.goal).length;
 
+// use the total number of games
+const totalGames = GAMES_JSON.length;
 
-// create a string that explains the number of unfunded games using the ternary operator
-
-console.log("A total of $800,268 has been raised for 11 games! There are 7 games that are currenty unfunded, with your help we can get these awesome games funded!")
-
-
-//const totalMoneyRaised = 1500;
-//const totalGames = 10;
-//unfundedGames = 4;
-
-//const message = `We have raised $${totalMoneyRaised} for ${totalGames} games. ${
-  //unfundedGames > 0
-    //? `There ${
-      //  unfundedGames === 1 ? "is" : "are"
-      //} ${unfundedGames} unfunded game${
-       // unfundedGames === 1 ? "" : "s"
-      //} remaining.`
-    //: "All games have been funded!"
-//}`;
-
-//console.log(message);
-
+// create a string using the updated message format
+const message = `A total of $${totalMoneyRaised.toLocaleString()} 
+                has been raised for ${totalGames} games! 
+                Currently, there ${unfundedGames === 1 ? "is" : "are"} ${unfundedGames} unfunded game${unfundedGames === 1 ? "" : "s"} remaining. 
+                ${unfundedGames != 0 ? "With your help, we can get these awesome games funded!" : "All games have been funded! Thank you for your support!"}`;
 
 // create a new DOM element containing the template string and append it to the description container
-
 const paragraph = document.createElement("p");
-paragraph.innerHTML = `A total of $800,268 has been raised for 11 games! There are 7 games that are currenty unfunded, with your help we can get these awesome games funded!`;
+paragraph.innerHTML = message;
 descriptionContainer.appendChild(paragraph);
-
-
 
 
 
