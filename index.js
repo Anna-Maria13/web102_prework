@@ -213,7 +213,6 @@ console.log("A total of $800,268 has been raised for 11 games! There are 7 games
 
 const paragraph = document.createElement("p");
 paragraph.innerHTML = `A total of $800,268 has been raised for 11 games! There are 7 games that are currenty unfunded, with your help we can get these awesome games funded!`;
-descriptionContainer = document.querySelector("displayStr");
 descriptionContainer.appendChild(paragraph);
 
 
